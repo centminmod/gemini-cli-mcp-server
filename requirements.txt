@@ -1,0 +1,9 @@
+# Core MCP Server Dependencies
+mcp>=0.3.0
+httpx>=0.24.0
+cachetools>=5.3.0
+
+# Optional Development Dependencies (install separately if needed)
+# pytest>=7.0.0
+# pytest-mock>=3.10.0
+# uvicorn[standard]>=0.20.0
