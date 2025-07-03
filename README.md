@@ -2,13 +2,26 @@
 
 A production-ready Model Context Protocol (MCP) server that bridges Google's Gemini CLI with MCP-compatible clients like Claude Code and Claude Desktop. This enterprise-grade server provides 12 specialized tools for seamless dual-AI workflows between Claude and Gemini AI.
 
-Example Claude Code calling one of the 12 MCP tools, `gemini_prompt`:
+**Example 1:** Claude Code calling one of the 12 MCP tools, `gemini_prompt`:
 
 ```bash
 @gemini_prompt("Analyse @mcp_server.py codebase and modules explaining what this code does, think deeply before responding")
 ```
 
 ![gemini-cli-mcp-server screenshot](/screenshots/claude-code-gemini-cli-mcp-prompt-test-020725-1.png)
+
+**Example 2:** Claude Code Custom Slash Command Prompt + Claude & Gemini CLI MCP Server Teamwork
+
+Setup Claude Code custom slash command prompt `/test-gemini-prompt-analyse-teamwork` within Git repo project at `.claude/commands/test-mcp/test-gemini-prompt-analyse-teamwork.md`. When you invoke this command, Claude Code Sonnet 4 first performs a deep analysis of the Gemini CLI MCP server code. It then delegates the same codebase to Google Gemini 2.5 Flash via the MCP tool’s `@gemini_prompt()` (note that Flash may be rate-limited on free tiers). Finally, Claude Code Sonnet 4 synthesizes both sets of insights into a single, consolidated report.
+
+![Claude Code using custom slash command prompt and Gemini CLI MCP server for teamwork](/screenshots/claude-code-command-shortcut-claude-gemini-mcp-teamwork-analysis2-1.png)
+
+![Claude Code using custom slash command prompt and Gemini CLI MCP server for teamwork](/screenshots/claude-code-command-shortcut-claude-gemini-mcp-teamwork-analysis2-2.png)
+
+![Claude Code using custom slash command prompt and Gemini CLI MCP server for teamwork](/screenshots/claude-code-command-shortcut-claude-gemini-mcp-teamwork-analysis2-3.png)
+
+![Claude Code using custom slash command prompt and Gemini CLI MCP server for teamwork](/screenshots/claude-code-command-shortcut-claude-gemini-mcp-teamwork-analysis2-4.png)
+
 
 ## 🚀 Key Features
 
