@@ -22,6 +22,19 @@ Setup Claude Code custom slash command prompt `/test-gemini-prompt-analyse-teamw
 
 ![Claude Code using custom slash command prompt and Gemini CLI MCP server for teamwork](/screenshots/claude-code-command-shortcut-claude-gemini-mcp-teamwork-analysis2-4.png)
 
+**Example 3:** Claude Code Custom Slash Command Prompt + Claude & Gemini CLI MCP Server Comphrensive Review
+
+Setup Claude Code custom slash command prompt `.claude/commands/workflow-orchestrators/comprehensive-review.md` within Git repo project at `.claude/commands/workflow-orchestrators/comprehensive-review.md`. When you invoke this command, Claude Code Sonnet 4 first performs a comphrensive review of the Gemini CLI MCP server code and writes a report. It then asks Google Gemini 2.5 Flash via the MCP tool’s `@gemini_prompt()` (note that Flash may be rate-limited on free tiers) to verify and evaluate the generated report and add it's findings to the report.
+
+![Claude Code using custom slash command prompt and Gemini CLI MCP server verification](/screenshots/claude-code-command-shortcut-comphrensive-review-1.png)
+
+![Claude Code using custom slash command prompt and Gemini CLI MCP server verification](/screenshots/claude-code-command-shortcut-comphrensive-review-2.png)
+
+![Claude Code using custom slash command prompt and Gemini CLI MCP server verification](/screenshots/claude-code-command-shortcut-comphrensive-review-3.png)
+
+![Claude Code using custom slash command prompt and Gemini CLI MCP server verification](/screenshots/claude-code-command-shortcut-comphrensive-review-4.png)
+
+
 
 ## 🚀 Key Features
 
