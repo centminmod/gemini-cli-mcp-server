@@ -265,7 +265,7 @@ gemini_verify_solution(
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Clone the repository
-git clone https://github.com/your-username/gemini-cli-mcp-server.git
+git clone https://github.com/centminmod/gemini-cli-mcp-server.git
 cd gemini-cli-mcp-server
 
 # Create and activate virtual environment
@@ -291,7 +291,7 @@ python mcp_server.py --help
 brew install uv
 
 # Clone the repository
-git clone https://github.com/your-username/gemini-cli-mcp-server.git
+git clone https://github.com/centminmod/gemini-cli-mcp-server.git
 cd gemini-cli-mcp-server
 
 # Create and activate virtual environment
@@ -1019,7 +1019,7 @@ We welcome contributions to improve the Gemini CLI MCP Server! Here's how you ca
 
 ```bash
 # Clone and setup development environment
-git clone https://github.com/your-username/gemini-cli-mcp-server.git
+git clone https://github.com/centminmod/gemini-cli-mcp-server.git
 cd gemini-cli-mcp-server
 uv venv
 source .venv/bin/activate
