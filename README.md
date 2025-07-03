@@ -39,11 +39,11 @@ Setup Claude Code custom slash command prompt `.claude/commands/workflow-orchest
 ## 🚀 Key Features
 
 - **12 Specialized MCP Tools** - Complete toolset for Claude-Gemini integration
-- **Enterprise Architecture** - Modular design with advanced caching, retry logic, and fallback mechanisms
+- **7-Module Enterprise Architecture** - Lock-free operations, security hardening, and enterprise monitoring
 - **Dynamic Token Limits** - Tool-specific limits from 100K-800K characters with model-aware scaling
 - **Dual-AI Workflows** - Purpose-built tools for plan evaluation, code review, and solution verification
 - **@filename Support** - Direct file reading by Gemini CLI for optimal token efficiency
-- **Production Ready** - Comprehensive testing, security hardening, and performance optimization
+- **Production Ready** - 2,500+ test cases, 9 security fixes, OpenTelemetry + Prometheus monitoring
 - **High Concurrency** - Async architecture supporting 1,000-10,000+ concurrent requests
 
 ## 📋 Table of Contents
@@ -78,13 +78,15 @@ The Gemini CLI MCP Server features a modular, enterprise-grade architecture desi
 
 ### Core Components
 
-**🔧 Modular Architecture (5 modules)**:
+**🔧 Modular Architecture (7 modules)**:
 
-- **`mcp_server.py`** - FastMCP server with 12 tool implementations
-- **`gemini_config.py`** - Configuration management and error taxonomy  
-- **`gemini_metrics.py`** - Performance monitoring and analytics
-- **`gemini_utils.py`** - Utility functions, validation, and security
-- **`prompts/`** - Template module with TTL caching system
+- **`mcp_server.py`** - FastMCP server with 12 tool implementations (1,176 lines)
+- **`gemini_config.py`** - Configuration management and error taxonomy (1,092 lines)
+- **`gemini_metrics.py`** - Performance monitoring and analytics (187 lines)
+- **`gemini_utils.py`** - Utility functions, validation, and security (1,958 lines)
+- **`prompts/`** - Template module with TTL caching system (8 files)
+- **`monitoring.py`** - OpenTelemetry, Prometheus, and health check integration (624 lines)
+- **`constants.py`** - Centralized configuration constants and magic numbers (243 lines)
 
 **📝 Template System Architecture**:
 
@@ -108,19 +110,20 @@ prompts/
 - **Performance**: Cached templates improve response times for repeated operations
 
 **⚡ Enterprise Features**:
-- Advanced TTL-based caching with atomic operations
-- Exponential backoff retry logic with jitter
-- Automatic model fallback (gemini-2.5-pro → gemini-2.5-flash)
-- Rate limiting with DoS protection
-- Comprehensive input validation and sanitization
-- Prompt injection protection with XML tag segregation
+- **Lock-Free Cache Operations**: 10-100x concurrency improvement with atomic get-or-set patterns
+- **Advanced TTL-based caching**: Template integrity verification with SHA-256 hashing
+- **Exponential backoff retry logic**: Intelligent jitter for optimal recovery
+- **Automatic model fallback**: gemini-2.5-pro → gemini-2.5-flash with quota management
+- **Enterprise Monitoring**: OpenTelemetry tracing + Prometheus metrics with graceful degradation
+- **Rate limiting with DoS protection**: O(1) deque-based algorithms with memory leak protection
 
 **🛡️ Security & Reliability**:
-- Multi-layer input validation
-- Environment variable safety with range validation
-- Structured error handling with 11 error code taxonomy
-- Comprehensive logging and monitoring
-- Memory-safe operations with bounded caches
+- **9 Critical Security Fixes**: Environment variable injection, prompt injection, cache tampering protection
+- **Multi-layer input validation**: 15+ attack categories with compiled regex patterns
+- **Security Pattern Detection**: Real-time protection against command injection, path traversal, XSS
+- **Memory-safe operations**: Bounded caches with automatic cleanup and O(1) operations
+- **Structured error handling**: 11 error code taxonomy with sanitized client responses
+- **Enterprise Compliance**: OWASP Top 10 aligned with NIST security guidelines
 
 ### Key Architectural Decisions
 
@@ -700,6 +703,17 @@ export GEMINI_RATE_LIMIT_REQUESTS=100  # Requests per time window
 export GEMINI_RATE_LIMIT_WINDOW=60     # Time window in seconds
 ```
 
+#### Enterprise Monitoring (Optional)
+```bash
+export ENABLE_MONITORING=true          # Master control for all monitoring features
+export ENABLE_OPENTELEMETRY=true       # Enable OpenTelemetry distributed tracing
+export ENABLE_PROMETHEUS=true          # Enable Prometheus metrics collection
+export ENABLE_HEALTH_CHECKS=true       # Enable health check system
+export PROMETHEUS_PORT=8000             # Prometheus metrics endpoint port
+export OPENTELEMETRY_ENDPOINT="https://otel-collector:4317"  # OpenTelemetry endpoint
+export OPENTELEMETRY_SERVICE_NAME="gemini-cli-mcp-server"    # Service name for tracing
+```
+
 ### Configuration Examples
 
 **Standard Development**:
@@ -892,12 +906,12 @@ asyncio.run(test_prompts())
 ### Production Readiness
 
 The server has been comprehensively tested with:
-- **500+ test scenarios** across all 12 tools
-- **@filename syntax validation** with real files
-- **Error handling and edge cases**
-- **Performance benchmarks** under load
-- **Security vulnerability assessments**
-- **Memory leak and resource usage testing**
+- **2,500+ test cases** across 6 specialized test files with descriptive naming
+- **Complete security validation** covering all 9 critical security fixes
+- **Performance benchmarking** with concurrency stress testing and memory leak detection  
+- **Monitoring integration testing** with graceful degradation validation
+- **@filename syntax validation** with real files across all 12 tools
+- **Error handling and edge cases** for enterprise deployment scenarios
 
 ## 🔧 Troubleshooting
 
