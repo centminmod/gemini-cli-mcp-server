@@ -372,11 +372,16 @@ gemini config set api_key YOUR_GEMINI_API_KEY
 
 ### Claude Code
 
-Add the server using the Claude Code MCP command:
+Add the server using the Claude Code MCP command for `user` scope:
 
 ```bash
-claude mcp add gemini-cli /absolute/path/to/.venv/bin/python /absolute/path/to/mcp_server.py
+claude mcp add gemini-cli /absolute/path/to/.venv/bin/python /absolute/path/to/mcp_server.py -s user -e GEMINI_API_KEY='YOUR_GEMINI_API_KEY'
 ```
+
+Use the `-s` or `--scope` flag to specify where the configuration is stored:
+* `local` (default): Available only to you in the current project (was called `project` in older versions)
+* `project`: Shared with everyone in the project via `.mcp.json` file
+* `user`: Available to you across all projects (was called `global` in older versions)
 
 ### Claude Desktop
 
