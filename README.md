@@ -98,6 +98,28 @@ In the example below, Gemini 2.5 Flash debates with OpenAI GPT-4.1-mini through 
 
 ![Claude Code with Gemini CLI MCP Server With OpenRouter AI Collaboration](/screenshots/claude-code-gemini-mcp-openrouter-ai-collaboration-demo-4.png)
 
+Or `validation` mode with Gemini 2.5 Flash, OpenAI GPT-4.1-mini and Anthropic Claude 3 Haiku.
+
+~~~bash
+@gemini_ai_collaboration(
+    collaboration_mode="validation",
+    content="@mcp_server.py",  # or multiple files
+    models="gemini-2.5-flash,openai/gpt-4.1-mini,anthropic/cla
+ude-3-haiku",
+    validation_criteria="code_quality,performance,security,mai
+ntainability,best_practices,documentation",
+    confidence_threshold=0.8,
+    consensus_method="weighted_majority",
+    conflict_resolution="detailed_analysis",
+    context="Code review for production deployment",
+    budget_limit=5.00
+)
+~~~
+
+![Claude Code with Gemini CLI MCP Server With OpenRouter AI Collaboration](/screenshots/claude-code-gemini-mcp-openrouter-ai-collaboration-demo2-3.png)
+
+
+
 ## 🚀 Key Features
 
 - **23 Specialized MCP Tools** - Complete toolset for multi-AI integration across 4 core modules
