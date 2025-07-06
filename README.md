@@ -94,17 +94,16 @@ Extended Gemini CLI MCP server with Openrouter API support to access 400+ LLM mo
 
 ## 📋 Table of Contents
 
-- [Architecture Overview](#architecture-overview)
-- [Tool Suite](#tool-suite)
-- [Installation](#installation)
-- [MCP Client Configuration](#mcp-client-configuration)
-- [Usage Examples](#usage-examples)
-- [Advanced Features](#advanced-features)
-- [Configuration](#configuration)
-- [Performance](#performance)
-- [Testing](#testing)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
+- [Architecture Overview](#%EF%B8%8F-architecture-overview)
+- [Tool Suite](#%EF%B8%8F-tool-suite)
+- [Installation](#-installation)
+- [MCP Client Configuration](#%EF%B8%8F-mcp-client-configuration)
+- [Usage Examples](#-usage-examples)
+- [Advanced Features](#-advanced-features)
+- [Configuration](#%EF%B8%8F-configuration)
+- [Performance](#-performance)
+- [Testing](#-testing)
+- [Troubleshooting](#-troubleshooting)
 
 ## 🏗️ Architecture Overview
 
@@ -1268,63 +1267,3 @@ uvicorn[standard]>=0.20.0  # For alternative server deployment
 
 - **Gemini CLI**: Google's command-line interface for Gemini AI
 - **Node.js**: Required for Gemini CLI installation (if using npm)
-
-## 🤝 Contributing
-
-We welcome contributions to improve the Gemini CLI MCP Server! Here's how you can help:
-
-### Development Setup
-
-```bash
-# Clone and setup development environment
-git clone https://github.com/centminmod/gemini-cli-mcp-server.git
-cd gemini-cli-mcp-server
-uv venv
-source .venv/bin/activate
-uv pip install -r requirements.txt
-
-# Install development dependencies
-uv pip install pytest pytest-mock
-
-# Run tests
-python -m pytest tests/ -v
-```
-
-### Guidelines
-
-1. **Code Quality**: Follow existing patterns and maintain test coverage
-2. **Documentation**: Update README.md for new features
-3. **Testing**: Add tests for new functionality
-4. **Security**: Ensure all inputs are properly validated
-5. **Performance**: Consider impact on server performance
-6. **Compatibility**: Maintain backward compatibility
-
-### Areas for Contribution
-
-- **New MCP Tools**: Additional Gemini CLI integrations
-- **Performance Optimizations**: Caching and efficiency improvements
-- **Documentation**: Usage examples and tutorials
-- **Testing**: Additional test coverage and scenarios
-- **Security**: Vulnerability assessments and fixes
-- **Platform Support**: Windows compatibility improvements
-
-## 📜 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🔗 Links
-
-- **Gemini CLI**: [Google AI Gemini CLI](https://github.com/google/gemini-cli)
-- **MCP Protocol**: [Model Context Protocol](https://modelcontextprotocol.io/)
-- **Claude Code**: [Anthropic Claude Code](https://claude.ai/code)
-- **FastMCP**: [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk)
-
-## 🏆 Acknowledgments
-
-- Google AI team for the excellent Gemini CLI
-- Anthropic for the Model Context Protocol and Claude integration
-- The open-source community for inspiration and feedback
-
----
-
-**Ready to supercharge your AI workflows?** Install the Gemini CLI MCP Server today and experience the power of Claude-Gemini dual-AI collaboration! 🚀
