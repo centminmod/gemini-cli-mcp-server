@@ -2,6 +2,12 @@
 
 A production-ready Model Context Protocol (MCP) server that bridges Google's Gemini CLI with MCP-compatible clients like Claude Code and Claude Desktop. This enterprise-grade Gemini MCP server features OpenRouter AI API integration for access to 400+ AI models and provides 23 specialized tools for seamless multi-AI workflows between Claude, Gemini, and 400+ additional models.
 
+On Claude Desktop:
+
+![Claude Desktop with Gemini CLI MCP Server With OpenRouter AI Collaboration](/screenshots/claude-code-gemini-mcp-openrouter-ai-collaboration-demo3-1.png)
+
+![Claude Desktop with Gemini CLI MCP Server With OpenRouter AI Collaboration](/screenshots/claude-code-gemini-mcp-openrouter-ai-collaboration-demo3-2.png)
+
 **Example 1:** Claude Code calling one of the 23 MCP tools, `gemini_prompt`:
 
 ```bash
@@ -97,6 +103,12 @@ In the example below, Gemini 2.5 Flash debates with OpenAI GPT-4.1-mini through 
 ~~~
 
 ![Claude Code with Gemini CLI MCP Server With OpenRouter AI Collaboration](/screenshots/claude-code-gemini-mcp-openrouter-ai-collaboration-demo-4.png)
+
+Using Gemini CLI MCP in Claude Desktop with same MCP tool:
+
+![Claude Desktop with Gemini CLI MCP Server With OpenRouter AI Collaboration](/screenshots/claude-code-gemini-mcp-openrouter-ai-collaboration-demo3-4.png)
+
+![Claude Desktop with Gemini CLI MCP Server With OpenRouter AI Collaboration](/screenshots/claude-code-gemini-mcp-openrouter-ai-collaboration-demo3-5.png)
 
 Or `validation` mode with Gemini 2.5 Flash, OpenAI GPT-4.1-mini and Anthropic Claude 3 Haiku.
 
