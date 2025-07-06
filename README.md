@@ -80,7 +80,23 @@ Extended Gemini CLI MCP server with Openrouter API support to access 400+ LLM mo
 
 </details>
 
+**Example 6:** Claude Code with Gemini CLI MCP Server AI Collaboration
 
+The Gemini CLI MCP server includes OpenRouter API support for accessing 400+ LLM models. The `@gemini_ai_collaboration` MCP tool enables multiple AI models to engage in structured conversations, collaborations, or debates. This allows Gemini 2.5 models (via Gemini CLI) to collaborate with OpenRouter-based models like OpenAI GPT-4, Anthropic Claude, and others.
+
+In the example below, Gemini 2.5 Flash debates with OpenAI GPT-4.1-mini through Claude Code. Claude Code (Sonnet 4) orchestrates the debate and has full access to the conversation context, enabling sophisticated multi-AI workflows.
+
+~~~bash
+@gemini_ai_collaboration(
+      collaboration_mode="debate",
+      content="Should we use microservices or monolith?",
+      models="gemini-2.5-flash,openai/gpt-4.1-mini",
+      rounds=4,
+      debate_style="constructive"
+  )
+~~~
+
+![Claude Code with Gemini CLI MCP Server With OpenRouter AI Collaboration](/screenshots/claude-code-gemini-mcp-openrouter-ai-collaboration-demo-4.png)
 
 ## 🚀 Key Features
 
