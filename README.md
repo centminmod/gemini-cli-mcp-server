@@ -412,6 +412,134 @@ gemini_ai_collaboration(
 )
 ```
 
+#### Complete Parameter Reference for `gemini_ai_collaboration`
+
+**Available Collaboration Modes:**
+- **`sequential`** - Progressive refinement through ordered analysis pipeline
+- **`debate`** - Multi-round discussions with consensus building  
+- **`validation`** - Cross-platform validation with conflict resolution
+
+**Available Debate Styles (for debate mode):**
+- **`constructive`** (default) - Focus on building understanding rather than winning arguments
+- **`adversarial`** - Challenge assumptions and arguments rigorously  
+- **`collaborative`** - Work together to explore topics comprehensively
+- **`socratic`** - Use questioning to explore underlying assumptions
+- **`devil_advocate`** - Deliberately argue for challenging positions
+
+**Universal Parameters:**
+- **`collaboration_mode`** (required): `sequential` | `debate` | `validation`
+- **`content`** (required): Content to be analyzed/processed
+- **`models`** (optional): Comma-separated list of AI models (auto-selected if not provided)
+- **`context`** (optional): Additional context for collaboration
+- **`conversation_id`** (optional): For stateful conversation history
+- **`budget_limit`** (optional): USD cost limit for OpenRouter models
+
+**Sequential Mode Parameters:**
+- **`pipeline_stages`** (optional): Comma-separated stages (auto-generated if not provided)
+- **`handoff_criteria`** (optional): `completion_of_stage` | `quality_threshold` | `consensus_reached` | `time_based`
+- **`quality_gates`** (optional): `none` | `basic` | `standard` | `strict` | `comprehensive`
+- **`focus`** (optional): Focus area (default: "progressive refinement")
+
+**Debate Mode Parameters:**  
+- **`rounds`** (optional): Number of debate rounds (1-10, default: 3)
+- **`debate_style`** (optional): See debate styles above (default: "constructive")
+- **`convergence_criteria`** (optional): `substantial_agreement` | `consensus` | `majority_view` | `all_viewpoints`
+- **`focus`** (optional): Focus area (default: "comprehensive analysis")
+
+**Validation Mode Parameters:**
+- **`validation_criteria`** (optional): Comma-separated criteria (auto-generated if not provided)
+- **`confidence_threshold`** (optional): 0.0-1.0 (default: 0.7)
+- **`consensus_method`** (optional): `simple_majority` | `weighted_majority` | `unanimous` | `supermajority` | `expert_panel`
+- **`conflict_resolution`** (optional): `ignore` | `flag_only` | `detailed_analysis` | `additional_validation` | `expert_arbitration`
+
+#### Advanced Usage Examples
+
+**Different Debate Styles:**
+```python
+# Adversarial debate for critical analysis
+gemini_ai_collaboration(
+    collaboration_mode="debate",
+    content="Should our startup use microservices architecture?",
+    models="gemini-2.5-flash,openai/gpt-4.1-mini",
+    rounds=3,
+    debate_style="adversarial",
+    convergence_criteria="majority_view"
+)
+
+# Socratic questioning for deep exploration
+gemini_ai_collaboration(
+    collaboration_mode="debate",
+    content="What makes code maintainable?",
+    models="gemini-2.5-flash,anthropic/claude-3-haiku",
+    rounds=4,
+    debate_style="socratic",
+    focus="fundamental principles"
+)
+
+# Devil's advocate for stress testing ideas
+gemini_ai_collaboration(
+    collaboration_mode="debate",
+    content="Our new feature implementation plan",
+    models="gemini-2.5-flash,openai/gpt-4.1-mini,anthropic/claude-3-haiku",
+    rounds=2,
+    debate_style="devil_advocate",
+    focus="identifying potential failures"
+)
+```
+
+**Sequential Pipeline Examples:**
+```python
+# Quality-gated sequential analysis
+gemini_ai_collaboration(
+    collaboration_mode="sequential",
+    content="@src/authentication.py",
+    models="gemini-2.5-flash,openai/gpt-4.1-mini,anthropic/claude-3-haiku",
+    pipeline_stages="code_review,security_analysis,performance_optimization,documentation",
+    quality_gates="strict",
+    handoff_criteria="quality_threshold"
+)
+
+# Time-based handoffs for rapid iteration
+gemini_ai_collaboration(
+    collaboration_mode="sequential",
+    content="Product requirements analysis",
+    models="gemini-2.5-flash,openai/gpt-4.1-nano",
+    pipeline_stages="initial_analysis,stakeholder_review,final_recommendations",
+    handoff_criteria="time_based",
+    focus="user experience"
+)
+```
+
+**Validation Examples:**
+```python
+# High-confidence consensus validation
+gemini_ai_collaboration(
+    collaboration_mode="validation",
+    content="Critical system design decisions",
+    models="gemini-2.5-flash,openai/gpt-4.1-mini,anthropic/claude-3-haiku",
+    validation_criteria="scalability,security,maintainability,cost_efficiency",
+    confidence_threshold=0.9,
+    consensus_method="unanimous",
+    conflict_resolution="expert_arbitration"
+)
+
+# Supermajority validation with detailed conflict analysis
+gemini_ai_collaboration(
+    collaboration_mode="validation",
+    content="API design specification",
+    models="gemini-2.5-flash,openai/gpt-4.1-mini,anthropic/claude-3-haiku",
+    validation_criteria="usability,performance,consistency,documentation",
+    consensus_method="supermajority",
+    conflict_resolution="detailed_analysis"
+)
+```
+
+**Auto-Selection Behavior:**
+When `models` parameter is not provided, the function automatically selects appropriate models:
+- **Sequential**: `"gemini-2.5-flash,openai/gpt-4.1-nano,anthropic/claude-3-haiku"`
+- **Debate**: `"gemini-2.5-flash,openai/gpt-4.1-mini,anthropic/claude-3-haiku"`  
+- **Validation**: `"gemini-2.5-flash,openai/gpt-4.1-nano,anthropic/claude-3-haiku"`
+
 ### OpenRouter Tools (3)
 
 #### `gemini_test_openrouter`
