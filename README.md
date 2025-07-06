@@ -1,8 +1,8 @@
 # Gemini CLI MCP Server
 
-A production-ready Model Context Protocol (MCP) server that bridges Google's Gemini CLI with MCP-compatible clients like Claude Code and Claude Desktop. This enterprise-grade server provides 12 specialized tools for seamless dual-AI workflows between Claude and Gemini AI.
+A production-ready Model Context Protocol (MCP) server that bridges Google's Gemini CLI with MCP-compatible clients like Claude Code and Claude Desktop. This enterprise-grade Gemini MCP server features OpenRouter AI API integration for access to 400+ AI models and provides 23 specialized tools for seamless multi-AI workflows between Claude, Gemini, and 400+ additional models.
 
-**Example 1:** Claude Code calling one of the 12 MCP tools, `gemini_prompt`:
+**Example 1:** Claude Code calling one of the 23 MCP tools, `gemini_prompt`:
 
 ```bash
 @gemini_prompt("Analyse @mcp_server.py codebase and modules explaining what this code does, think deeply before responding")
@@ -13,6 +13,8 @@ A production-ready Model Context Protocol (MCP) server that bridges Google's Gem
 **Example 2:** Claude Code Custom Slash Command Prompt + Claude & Gemini CLI MCP Server Teamwork
 
 Setup Claude Code custom slash command prompt `/test-gemini-prompt-analyse-teamwork` within Git repo project at `.claude/commands/test-mcp/test-gemini-prompt-analyse-teamwork.md`. When you invoke this command, Claude Code Sonnet 4 first performs a deep analysis of the Gemini CLI MCP server code. It then delegates the same codebase to Google Gemini 2.5 Flash via the MCP tool’s `@gemini_prompt()` (note that Flash may be rate-limited on free tiers). Finally, Claude Code Sonnet 4 synthesizes both sets of insights into a single, consolidated report.
+
+Click `View Screenshots` to see example.
 
 <details>
 <summary>View Screenshots: Claude & Gemini Teamwork Analysis</summary>
@@ -31,6 +33,8 @@ Setup Claude Code custom slash command prompt `/test-gemini-prompt-analyse-teamw
 
 Setup Claude Code custom slash command prompt `.claude/commands/workflow-orchestrators/comprehensive-review.md` within Git repo project at `.claude/commands/workflow-orchestrators/comprehensive-review.md`. When you invoke this command, Claude Code Sonnet 4 first performs a comphrensive review of the Gemini CLI MCP server code and writes a report. It then asks Google Gemini 2.5 Flash via the MCP tool’s `@gemini_prompt()` (note that Flash may be rate-limited on free tiers) to verify and evaluate the generated report and add it's findings to the report.
 
+Click `View Screenshots` to see example.
+
 <details>
 <summary>View Screenshots: Comprehensive Review Workflow</summary>
 
@@ -48,6 +52,8 @@ Setup Claude Code custom slash command prompt `.claude/commands/workflow-orchest
 
 Setup Claude Code custom slash command prompt `.claude/commands/workflow-orchestrators/comprehensive-review.md` within Git repo project at `.claude/commands/workflow-orchestrators/comprehensive-review.md`. When you invoke this command, Claude Code Sonnet 4 first performs a comphrensive review of the Gemini CLI MCP server code and writes a report. It then asks Google Gemini 2.5 Flash via the MCP tool’s `@gemini_prompt()` (note that Flash may be rate-limited on free tiers) to verify and evaluate the generated report and add it's findings to the report. Then finally ask Claude to respond to Gemini CLI MCP server's analysis.
 
+Click `View Screenshots` to see example.
+
 <details>
 <summary>View Screenshots: Extended Analysis with Claude Response</summary>
 
@@ -61,16 +67,33 @@ Setup Claude Code custom slash command prompt `.claude/commands/workflow-orchest
 
 </details>
 
+**Example 5:** Claude Code with Gemini CLI MCP Server With OpenRouter API support
+
+Extended Gemini CLI MCP server with Openrouter API support to access 400+ LLM models. Click `View Screenshots` to see example of Claude Code chatting with Openai GP4 4.1-nano, Mistral AI devstral-small and DeepSeek R1 0528.
+
+<details>
+<summary>View Screenshots: Claude Code with Gemini CLI MCP Server With OpenRouter API support</summary>
+
+![Claude Code with Gemini CLI MCP Server With OpenRouter API support](/screenshots/claude-code-gemini-cli-mcp-with-openrouter-demo-1.png)
+
+![Claude Code with Gemini CLI MCP Server With OpenRouter API support](/screenshots/claude-code-gemini-cli-mcp-with-openrouter-demo-2.png)
+
+![Claude Code with Gemini CLI MCP Server With OpenRouter API support](/screenshots/claude-code-gemini-cli-mcp-with-openrouter-demo-3.png)
+
+![Claude Code with Gemini CLI MCP Server With OpenRouter API support](/screenshots/claude-code-gemini-cli-mcp-with-openrouter-demo-4.png)
+
+</details>
+
 
 
 ## 🚀 Key Features
 
-- **12 Specialized MCP Tools** - Complete toolset for Claude-Gemini integration
-- **7-Module Enterprise Architecture** - Lock-free operations, security hardening, and enterprise monitoring
+- **23 Specialized MCP Tools** - Complete toolset for multi-AI integration across 4 core modules
+- **Enterprise Architecture** - Modular design with 70+ supporting files, security hardening, and enterprise monitoring
 - **Dynamic Token Limits** - Tool-specific limits from 100K-800K characters with model-aware scaling
-- **Dual-AI Workflows** - Purpose-built tools for plan evaluation, code review, and solution verification
-- **@filename Support** - Direct file reading by Gemini CLI for optimal token efficiency
-- **Production Ready** - 2,500+ test cases, 9 security fixes, OpenTelemetry + Prometheus monitoring
+- **Multi-AI Workflows** - Purpose-built tools for plan evaluation, code review, and cross-platform collaboration
+- **@filename Support** - Direct file reading with intelligent large file handling strategies
+- **Production Ready** - 2,500+ test cases, 11 security fixes, OpenTelemetry + Prometheus monitoring
 - **High Concurrency** - Async architecture supporting 1,000-10,000+ concurrent requests
 
 ## 📋 Table of Contents
@@ -105,15 +128,23 @@ The Gemini CLI MCP Server features a modular, enterprise-grade architecture desi
 
 ### Core Components
 
-**🔧 Modular Architecture (7 modules)**:
+**🔧 Modular Architecture (4 core modules + 70+ supporting files)**:
 
-- **`mcp_server.py`** - FastMCP server with 12 tool implementations (1,176 lines)
-- **`gemini_config.py`** - Configuration management and error taxonomy (1,092 lines)
-- **`gemini_metrics.py`** - Performance monitoring and analytics (187 lines)
-- **`gemini_utils.py`** - Utility functions, validation, and security (1,958 lines)
-- **`prompts/`** - Template module with TTL caching system (8 files)
-- **`monitoring.py`** - OpenTelemetry, Prometheus, and health check integration (624 lines)
-- **`constants.py`** - Centralized configuration constants and magic numbers (243 lines)
+**Core MCP Modules:**
+- **`mcp_server.py`** - Streamlined coordinator with tool registration pattern (295 lines)
+- **`mcp_core_tools.py`** - Core Gemini CLI tool implementations (487 lines)
+- **`mcp_collaboration_engine.py`** - AI collaboration system (576 lines)
+- **`mcp_service_implementations.py`** - Service tools and OpenRouter integration (936 lines)
+
+**Supporting Infrastructure:**
+- **`gemini_config.py`** - Configuration management and error taxonomy (1,779 lines)
+- **`gemini_utils.py`** - Utility functions, validation, and security (2,556+ lines)
+- **`conversation_manager.py`** - Stateful conversation management with Redis (1,048 lines)
+- **`monitoring.py`** - OpenTelemetry, Prometheus, and health check integration (1,518 lines)
+- **`openrouter_client.py`** - OpenRouter API client for 400+ AI models (662 lines)
+- **`prompts/`** - Template module with TTL caching and integrity verification (10 files)
+- **`security/`** - Enterprise security framework (5 modules, 2,951 lines total)
+- **70+ additional modules** across caching, rate limiting, monitoring, and utilities
 
 **📝 Template System Architecture**:
 
@@ -145,11 +176,11 @@ prompts/
 - **Rate limiting with DoS protection**: O(1) deque-based algorithms with memory leak protection
 
 **🛡️ Security & Reliability**:
-- **9 Critical Security Fixes**: Environment variable injection, prompt injection, cache tampering protection
-- **Multi-layer input validation**: 15+ attack categories with compiled regex patterns
-- **Security Pattern Detection**: Real-time protection against command injection, path traversal, XSS
+- **11 Critical Security Fixes**: Session-based rate limiting, template integrity validation, enhanced credential sanitization
+- **Multi-layer input validation**: 25+ attack categories with compiled regex patterns
+- **Security Pattern Detection**: Real-time protection against command injection, path traversal, XSS, prompt injection
 - **Memory-safe operations**: Bounded caches with automatic cleanup and O(1) operations
-- **Structured error handling**: 11 error code taxonomy with sanitized client responses
+- **Structured error handling**: Comprehensive error taxonomy with sanitized client responses
 - **Enterprise Compliance**: OWASP Top 10 aligned with NIST security guidelines
 
 ### Key Architectural Decisions
@@ -169,9 +200,9 @@ prompts/
 
 ## 🛠️ Tool Suite
 
-The server provides 12 specialized MCP tools organized into three categories:
+The server provides 23 specialized MCP tools organized into five categories:
 
-### Core Tools (3)
+### Core Gemini Tools (6)
 
 #### `gemini_cli`
 Execute any Gemini CLI command directly with comprehensive error handling.
@@ -191,8 +222,6 @@ Get cached Gemini CLI version information (30-minute TTL).
 ```python
 gemini_version()
 ```
-
-### Enhanced Structured Tools (6)
 
 #### `gemini_prompt`
 Send prompts with structured parameters and validation (100,000 char limit).
@@ -216,6 +245,32 @@ Get comprehensive server performance metrics and statistics.
 ```python
 gemini_metrics()
 ```
+
+### System Tools (3)
+
+#### `gemini_sandbox`
+Execute prompts in sandbox mode for code execution (200,000 char limit).
+```python
+gemini_sandbox(
+    prompt="Write and run a Python script to analyze data",
+    model="gemini-2.5-pro",
+    sandbox_image="python:3.11-slim"  # optional
+)
+```
+
+#### `gemini_cache_stats`
+Get cache statistics for all cache backends.
+```python
+gemini_cache_stats()
+```
+
+#### `gemini_rate_limiting_stats`
+Get comprehensive rate limiting and quota statistics.
+```python
+gemini_rate_limiting_stats()
+```
+
+### Analysis Tools (5)
 
 #### `gemini_summarize`
 Summarize content with focus-specific analysis (400,000 char limit).
@@ -243,20 +298,6 @@ gemini_summarize_files(
     model="gemini-2.5-pro"  # optional
 )
 ```
-
-#### `gemini_sandbox`
-Execute prompts in sandbox mode for code execution (200,000 char limit).
-```python
-gemini_sandbox(
-    prompt="Write and run a Python script to analyze data",
-    model="gemini-2.5-pro",
-    sandbox_image="python:3.11-slim"  # optional
-)
-```
-
-### Dual-AI Workflow Tools (3)
-
-These tools enable powerful dual-AI workflows where Claude generates plans and code while Gemini provides evaluation and verification.
 
 #### `gemini_eval_plan`
 Evaluate Claude Code implementation plans (500,000 char limit).
@@ -291,6 +332,99 @@ gemini_verify_solution(
     context="Production deployment environment",
     model="gemini-2.5-pro"
 )
+```
+
+### Conversation Tools (5)
+
+#### `gemini_start_conversation`
+Start a new conversation with ID for stateful interactions.
+```python
+gemini_start_conversation(
+    title="Python Development Help",
+    description="Ongoing assistance with Python project",
+    tags="python,development",
+    expiration_hours=24
+)
+```
+
+#### `gemini_continue_conversation`
+Continue an existing conversation with context history.
+```python
+gemini_continue_conversation(
+    conversation_id="conv_12345",
+    prompt="How do I optimize this function?",
+    model="gemini-2.5-flash"
+)
+```
+
+#### `gemini_list_conversations`
+List active conversations with metadata.
+```python
+gemini_list_conversations(
+    limit=20,
+    status_filter="active"
+)
+```
+
+#### `gemini_clear_conversation`
+Clear/delete a specific conversation.
+```python
+gemini_clear_conversation(conversation_id="conv_12345")
+```
+
+#### `gemini_conversation_stats`
+Get conversation system statistics and health.
+```python
+gemini_conversation_stats()
+```
+
+### AI Collaboration Tools (1)
+
+#### `gemini_ai_collaboration`
+Enhanced multi-platform AI collaboration with cross-platform capabilities.
+```python
+# Sequential analysis pipeline
+gemini_ai_collaboration(
+    collaboration_mode="sequential",
+    content="Your task or code to analyze",
+    models="gemini-2.5-flash,openai/gpt-4.1-nano,anthropic/claude-3-haiku",
+    pipeline_stages="analysis,security_review,optimization,final_validation"
+)
+
+# Multi-round AI debate
+gemini_ai_collaboration(
+    collaboration_mode="debate", 
+    content="Should we use microservices or monolith?",
+    models="gemini-2.5-flash,openai/gpt-4.1-mini,anthropic/claude-3-haiku",
+    rounds=4,
+    debate_style="constructive"
+)
+```
+
+### OpenRouter Tools (3)
+
+#### `gemini_test_openrouter`
+Test OpenRouter connectivity and client functionality.
+```python
+gemini_test_openrouter()
+```
+
+#### `gemini_openrouter_opinion`
+Get responses from any of 400+ AI models via OpenRouter with @filename support.
+```python
+gemini_openrouter_opinion(
+    prompt="Analyze @config.yaml for security issues",
+    model="anthropic/claude-3-haiku",
+    temperature=0.7,
+    max_tokens=2000,
+    file_handling_strategy="auto"
+)
+```
+
+#### `gemini_openrouter_usage_stats`
+Get OpenRouter usage statistics and costs for the current session.
+```python
+gemini_openrouter_usage_stats()
 ```
 
 ## 📦 Installation
@@ -608,6 +742,9 @@ Each tool has optimized character limits based on typical use cases:
 | `gemini_verify_solution` | 800K chars | Complete solution verification |
 | `gemini_summarize` | 400K chars | Large content summarization |
 | `gemini_summarize_files` | 800K chars | File-based analysis with @filename syntax |
+| `gemini_ai_collaboration` | 500K chars | Multi-AI workflow collaboration |
+| `gemini_openrouter_opinion` | 150K chars | OpenRouter model interactions |
+| **Conversation Tools** | Variable | Context-aware with token management |
 
 ### Model-Aware Scaling
 
@@ -644,7 +781,7 @@ This ensures continuous operation during high-usage periods without user interve
 
 ### @filename Syntax Support
 
-All tools support Gemini CLI's native @filename syntax for optimal token efficiency:
+All tools support Gemini CLI's native @filename syntax for optimal token efficiency. OpenRouter tools include enhanced large file handling:
 
 ```python
 # Single file
@@ -656,14 +793,23 @@ gemini_review_code(code="@src/auth.py @src/middleware.py")
 # Directories and wildcards
 gemini_summarize(content="@src/ @tests/ @**/*.js")
 
+# OpenRouter with intelligent file processing
+gemini_openrouter_opinion(
+    prompt="Review @large_codebase/ for security",
+    model="anthropic/claude-3-haiku",
+    file_handling_strategy="auto"  # auto, full, chunk, summarize
+)
+
 # Mixed content
 gemini_eval_plan(plan="Based on @requirements.md, implement @design.py")
 ```
 
 **Benefits**:
 
-- 50-70% token efficiency improvement
+- 50-70% token efficiency improvement for Gemini CLI tools
 - Direct file reading by Gemini CLI
+- Intelligent large file handling for OpenRouter (200K+ token support)
+- Multiple processing strategies: full, chunk, summarize, auto
 - No intermediate processing overhead
 - Preserves full context window utilization
 
@@ -735,6 +881,27 @@ export GEMINI_RATE_LIMIT_REQUESTS=100  # Requests per time window
 export GEMINI_RATE_LIMIT_WINDOW=60     # Time window in seconds
 ```
 
+#### OpenRouter Configuration
+```bash
+export OPENROUTER_API_KEY="sk-or-v1-your-api-key"  # OpenRouter API key for 400+ models
+export OPENROUTER_DEFAULT_MODEL="openai/gpt-4.1-nano"  # Default OpenRouter model
+export OPENROUTER_COST_LIMIT_PER_DAY="10.0"        # Daily cost limit in USD
+export OPENROUTER_ENABLE_STREAMING="true"          # Enable streaming responses
+export OPENROUTER_MAX_FILE_TOKENS="50000"          # Per-file token limit for @filename
+export OPENROUTER_MAX_TOTAL_TOKENS="150000"        # Total prompt token limit
+```
+
+#### Conversation Management
+```bash
+export GEMINI_CONVERSATION_ENABLED="true"          # Enable conversation history
+export GEMINI_CONVERSATION_STORAGE="redis"         # Storage backend (redis, memory, auto)
+export GEMINI_CONVERSATION_EXPIRATION_HOURS="24"   # Auto-cleanup time
+export GEMINI_CONVERSATION_MAX_MESSAGES="10"       # Message history limit
+export GEMINI_CONVERSATION_MAX_TOKENS="20000"      # Token history limit
+export GEMINI_REDIS_HOST="localhost"               # Redis host for conversation storage
+export GEMINI_REDIS_PORT="6479"                    # Redis port (custom to avoid conflicts)
+```
+
 #### Enterprise Monitoring (Optional)
 ```bash
 export ENABLE_MONITORING=true          # Master control for all monitoring features
@@ -753,13 +920,36 @@ export OPENTELEMETRY_SERVICE_NAME="gemini-cli-mcp-server"    # Service name for 
 # Use defaults - no configuration needed
 ```
 
-**Enterprise Development**:
+**With OpenRouter (400+ Models)**:
 ```bash
+export OPENROUTER_API_KEY="sk-or-v1-your-api-key"
+export OPENROUTER_COST_LIMIT_PER_DAY="10.0"
+export OPENROUTER_DEFAULT_MODEL="anthropic/claude-3-haiku"
+```
+
+**Full Enterprise Setup**:
+```bash
+# Core configuration
 export GEMINI_TIMEOUT=600
 export GEMINI_EVAL_LIMIT=750000
 export GEMINI_REVIEW_LIMIT=600000
 export GEMINI_VERIFY_LIMIT=1200000
 export RETRY_MAX_ATTEMPTS=5
+
+# OpenRouter integration
+export OPENROUTER_API_KEY="sk-or-v1-your-api-key"
+export OPENROUTER_COST_LIMIT_PER_DAY="25.0"
+export OPENROUTER_DEFAULT_MODEL="openai/gpt-4.1-mini"
+
+# Conversation history with Redis
+export GEMINI_CONVERSATION_ENABLED="true"
+export GEMINI_CONVERSATION_STORAGE="redis"
+export GEMINI_REDIS_PORT="6479"
+
+# Enterprise monitoring
+export ENABLE_MONITORING="true"
+export ENABLE_PROMETHEUS="true"
+export PROMETHEUS_PORT="8000"
 ```
 
 **High-Performance Setup**:
@@ -768,6 +958,7 @@ export GEMINI_LOG_LEVEL=WARNING
 export RETRY_BASE_DELAY=0.5
 export RETRY_MAX_DELAY=10.0
 export GEMINI_RATE_LIMIT_REQUESTS=500
+export OPENROUTER_ENABLE_STREAMING="true"
 ```
 
 **Debug Configuration**:
@@ -775,6 +966,7 @@ export GEMINI_RATE_LIMIT_REQUESTS=500
 export GEMINI_LOG_LEVEL=DEBUG
 export GEMINI_OUTPUT_FORMAT=json
 export GEMINI_TIMEOUT=120
+export ENABLE_STDIN_DEBUG="1"
 ```
 
 ### Response Formats
@@ -803,22 +995,28 @@ Response from Gemini AI
 - Medium operations (simple prompts): 2-10 seconds
 - Complex operations (file analysis, code review): 10-60 seconds
 - Large analysis (enterprise codebases): 1-5 minutes
+- OpenRouter requests: 2-15 seconds (varies by model)
+- Conversation context loading: < 1 second (with Redis)
 
 **Concurrency**:
 - Async architecture supports 1,000-10,000+ concurrent requests
+- 10-100x concurrency improvement with lock-free cache operations
 - Memory-efficient single-threaded design
-- Non-blocking I/O operations
+- Non-blocking I/O operations across all 23 tools
 
 **Memory Usage**:
-- Base server: 10-20MB
-- Per operation: 2-5MB average
+- Base server: 15-30MB (expanded for enterprise features)
+- Per operation: 2-8MB average (varies by tool complexity)
 - Bounded caches prevent memory leaks
-- Automatic cleanup and garbage collection
+- O(1) rate limiting algorithms with automatic cleanup
+- Redis-backed conversation storage scales independently
 
 **Cache Effectiveness**:
 - Help/version commands: 95-99% hit rate
 - Prompt results: 60-80% hit rate for repeated operations
-- Template loading: 90-95% hit rate
+- Template loading: 90-95% hit rate (30-minute TTL)
+- OpenRouter model discovery: 98% hit rate
+- Conversation context: 85-95% hit rate with Redis
 
 ### Performance Optimization
 
@@ -851,12 +1049,15 @@ gemini_metrics()
 ```
 
 **Key Metrics**:
-- Commands executed and success rate
-- Average latency and throughput
-- Cache hit rates and effectiveness
-- Error rates and types
-- Model usage and fallback statistics
+- Commands executed and success rate across all 23 tools
+- Average latency and throughput per tool category
+- Cache hit rates and effectiveness (4 cache types)
+- Error rates and types with detailed classification
+- Model usage and fallback statistics (Gemini + OpenRouter)
 - Memory usage and resource utilization
+- OpenRouter cost tracking and usage statistics
+- Conversation system performance and storage metrics
+- Security pattern detection and rate limiting effectiveness
 
 ## 🧪 Testing
 
@@ -939,10 +1140,12 @@ asyncio.run(test_prompts())
 
 The server has been comprehensively tested with:
 - **2,500+ test cases** across 6 specialized test files with descriptive naming
-- **Complete security validation** covering all 9 critical security fixes
+- **Complete security validation** covering all 11 critical security fixes
 - **Performance benchmarking** with concurrency stress testing and memory leak detection  
 - **Monitoring integration testing** with graceful degradation validation
-- **@filename syntax validation** with real files across all 12 tools
+- **@filename syntax validation** with real files across all 23 tools
+- **OpenRouter integration testing** with 400+ model compatibility validation
+- **Conversation system testing** with Redis storage and context management
 - **Error handling and edge cases** for enterprise deployment scenarios
 
 ## 🔧 Troubleshooting
