@@ -76,11 +76,7 @@ Extended Gemini CLI MCP server with Openrouter API support to access 400+ LLM mo
 
 ![Claude Code with Gemini CLI MCP Server With OpenRouter API support](/screenshots/claude-code-gemini-cli-mcp-with-openrouter-demo-1.png)
 
-![Claude Code with Gemini CLI MCP Server With OpenRouter API support](/screenshots/claude-code-gemini-cli-mcp-with-openrouter-demo-2.png)
-
 ![Claude Code with Gemini CLI MCP Server With OpenRouter API support](/screenshots/claude-code-gemini-cli-mcp-with-openrouter-demo-3.png)
-
-![Claude Code with Gemini CLI MCP Server With OpenRouter API support](/screenshots/claude-code-gemini-cli-mcp-with-openrouter-demo-4.png)
 
 </details>
 
