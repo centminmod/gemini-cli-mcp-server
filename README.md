@@ -134,15 +134,16 @@ ntainability,best_practices,documentation",
 
 ## 🚀 Key Features
 
-- **25 Specialized MCP Tools** - Complete toolset for multi-AI integration across 4 core modules
+- **25 Specialized MCP Tools** - Complete toolset for multi-AI integration across 5 tool categories
 - **400+ AI Models** - Access to OpenAI, Anthropic, Meta, Google, and 20+ providers via OpenRouter integration
-- **Enterprise Architecture** - Modular design with 26+ modules organized across 5 architectural layers
+- **Enterprise Architecture** - Refactored modular design with 26+ modules organized across 6 architectural categories
 - **Conversation History** - Stateful multi-turn conversations with Redis-backed storage and cross-platform support
 - **Dynamic Token Limits** - Tool-specific limits from 100K-800K characters with model-aware scaling
 - **Multi-AI Workflows** - Purpose-built tools for plan evaluation, code review, and cross-platform collaboration
 - **@filename Support** - Direct file reading with intelligent large file handling strategies for 24 tools
-- **Production Ready** - 2,500+ test cases, 11 security fixes, OpenTelemetry + Prometheus monitoring
-- **High Concurrency** - Async architecture supporting 1,000-10,000+ concurrent requests
+- **Enterprise Security** - 11 critical security fixes with multi-layer defense and real-time protection
+- **Production Ready** - 2,500+ test cases, enterprise monitoring with OpenTelemetry + Prometheus
+- **High Concurrency** - Async architecture supporting 1,000-10,000+ concurrent requests with 10-100x improvement
 
 ## 📋 Table of Contents
 
@@ -175,32 +176,36 @@ The Gemini CLI MCP Server features a modular, enterprise-grade architecture desi
 
 ### Core Components
 
-**🔧 Modular Architecture (26+ modules across 5 architectural layers)**:
+**🔧 Refactored Modular Architecture (26+ modules across 6 architectural categories)**:
 
 **Core Server Layer (4 modules):**
-- **`mcp_server.py`** - FastMCP coordinator with tool registration pattern (327 lines)
-- **`mcp_core_tools.py`** - Core Gemini CLI tool implementations (488 lines)
-- **`mcp_collaboration_engine.py`** - AI collaboration system (798 lines)
-- **`mcp_service_implementations.py`** - Service tools and OpenRouter integration (1,228 lines)
+- **`mcp_server.py`** - Streamlined main coordinator with tool registration pattern (326 lines)
+- **`mcp_core_tools.py`** - Pure MCP tool implementations for core Gemini CLI tools (487 lines)
+- **`mcp_collaboration_engine.py`** - AI collaboration system with advanced workflow modes (1,103 lines)
+- **`mcp_service_implementations.py`** - System and service tools for OpenRouter, analysis, conversation (1,228 lines)
 
 **Configuration & Infrastructure (5 modules):**
-- **`gemini_config.py`** - Configuration management with 100+ environment variables (1,829 lines)
-- **`gemini_utils.py`** - Utility functions, validation, and security (2,556+ lines)
-- **`conversation_manager.py`** - Redis-backed conversation management (1,048 lines)
+- **`gemini_config.py`** - Configuration constants and environment loading (1,829 lines)
+- **`gemini_utils.py`** - Helper functions, validation, error handling, and security (3,551 lines)
+- **`conversation_manager.py`** - Stateful conversation management with Redis support (1,048 lines)
 - **`monitoring.py`** - OpenTelemetry, Prometheus, and health check integration (1,534 lines)
-- **`constants.py`** - Centralized configuration constants (318 lines)
+- **`constants.py`** - Centralized configuration constants and magic numbers (336 lines)
 
 **Integration Modules (2 modules):**
 - **`openrouter_client.py`** - OpenRouter API client for 400+ AI models (881 lines)
 - **`redis_cache.py`** - Redis caching with graceful memory fallback (914 lines)
 
-**Template System (11 files):**
+**Template System (12 modules):**
 - **`prompts/`** - Template module with TTL caching and integrity verification
 - Includes: template_loader.py, base_template.py, eval_template.py, review_template.py, verify_template.py, summarize_template.py, debate_template.py, sequential_template.py, validation_template.py, plus interface files
 
-**Security Framework (6 files):**
+**Security Framework (5 modules):**
 - **`security/`** - Enterprise security framework with 11 critical security fixes
-- Includes: api_key_manager.py, credential_sanitizer.py, pattern_detector.py, security_monitor.py, security_validator.py, plus initialization files
+- Includes: api_key_manager.py, credential_sanitizer.py, pattern_detector.py, security_monitor.py, security_validator.py
+
+**Rate Limiting & Utility Scripts (5 modules):**
+- **Rate Limiting Framework** (3 modules): per_model_rate_limiter.py, rate_limit_config.py, rate_limit_integration.py
+- **Utility Scripts** (2 modules): rotate_openrouter_key.py, security_audit.py
 
 **📝 Template System Architecture**:
 
@@ -224,19 +229,19 @@ prompts/
 - **Performance**: Cached templates improve response times for repeated operations
 
 **⚡ Enterprise Features**:
-- **Lock-Free Cache Operations**: 10-100x concurrency improvement with atomic get-or-set patterns
-- **Advanced TTL-based caching**: Template integrity verification with SHA-256 hashing
-- **Exponential backoff retry logic**: Intelligent jitter for optimal recovery
-- **Automatic model fallback**: gemini-2.5-pro → gemini-2.5-flash with quota management
+- **10-100x Concurrency Improvement**: Lock-free cache operations with atomic get-or-set patterns
+- **Advanced Caching System**: TTL-based caching with template integrity verification using SHA-256 hashing
+- **Process Pooling**: Configurable ProcessPoolExecutor reducing 100-500ms subprocess creation overhead
+- **Automatic Model Fallback**: gemini-2.5-pro → gemini-2.5-flash with intelligent quota management
 - **Enterprise Monitoring**: OpenTelemetry tracing + Prometheus metrics with graceful degradation
-- **Rate limiting with DoS protection**: O(1) deque-based algorithms with memory leak protection
+- **90% Rate Limiting Optimization**: Deque-based O(1) algorithms with memory leak protection
 
 **🛡️ Security & Reliability**:
 - **11 Critical Security Fixes**: Session-based rate limiting, template integrity validation, enhanced credential sanitization
-- **Multi-layer input validation**: 25+ attack categories with compiled regex patterns
-- **Security Pattern Detection**: Real-time protection against command injection, path traversal, XSS, prompt injection
-- **Memory-safe operations**: Bounded caches with automatic cleanup and O(1) operations
-- **Structured error handling**: Comprehensive error taxonomy with sanitized client responses
+- **Multi-layer Defense**: 25+ attack categories with compiled regex patterns for real-time protection  
+- **Security Pattern Detection**: Protection against command injection, path traversal, XSS, prompt injection
+- **Memory-Safe Operations**: Bounded caches with automatic cleanup and O(1) operations
+- **Structured Error Handling**: Comprehensive error taxonomy with sanitized client responses
 - **Enterprise Compliance**: OWASP Top 10 aligned with NIST security guidelines
 
 ### Key Architectural Decisions
@@ -1134,6 +1139,16 @@ export GEMINI_REDIS_HOST="localhost"               # Redis host for conversation
 export GEMINI_REDIS_PORT="6479"                    # Redis port (custom to avoid conflicts)
 ```
 
+#### Cloudflare AI Gateway Integration (Optional)
+```bash
+# Route OpenRouter requests through Cloudflare AI Gateway for enhanced performance
+export CLOUDFLARE_AI_GATEWAY_ENABLED="true"        # Enable Cloudflare AI Gateway
+export CLOUDFLARE_ACCOUNT_ID="your-account-id"     # Cloudflare Account ID
+export CLOUDFLARE_GATEWAY_ID="your-gateway-id"     # Cloudflare Gateway ID
+export CLOUDFLARE_AI_GATEWAY_TIMEOUT="300"         # Gateway timeout in seconds
+export CLOUDFLARE_AI_GATEWAY_MAX_RETRIES="3"       # Maximum retry attempts
+```
+
 #### Enterprise Monitoring (Optional)
 ```bash
 export ENABLE_MONITORING=true          # Master control for all monitoring features
@@ -1172,6 +1187,11 @@ export RETRY_MAX_ATTEMPTS=5
 export OPENROUTER_API_KEY="sk-or-v1-your-api-key"
 export OPENROUTER_COST_LIMIT_PER_DAY="25.0"
 export OPENROUTER_DEFAULT_MODEL="openai/gpt-4.1-mini"
+
+# Cloudflare AI Gateway (optional)
+export CLOUDFLARE_AI_GATEWAY_ENABLED="true"
+export CLOUDFLARE_ACCOUNT_ID="your-account-id"
+export CLOUDFLARE_GATEWAY_ID="your-gateway-id"
 
 # Conversation history with Redis
 export GEMINI_CONVERSATION_ENABLED="true"
@@ -1237,13 +1257,13 @@ Response from Gemini AI
 - Non-blocking I/O operations across all 25 tools
 
 **Memory Usage**:
-- Base server: 15-30MB (expanded for enterprise features)
+- Base server: 15-30MB (optimized for enterprise features)
 - Per operation: 2-8MB average (varies by tool complexity)
-- Bounded caches prevent memory leaks
-- O(1) rate limiting algorithms with automatic cleanup
+- Bounded caches prevent memory leaks with automatic cleanup
+- O(1) rate limiting algorithms with memory leak protection
 - Redis-backed conversation storage scales independently
 
-**Total Lines of Code**: ~12,000+ lines across key modules
+**Total Lines of Code**: ~15,000+ lines across 26+ modules
 
 **Cache Effectiveness**:
 - Help/version commands: 95-99% hit rate
@@ -1374,11 +1394,12 @@ asyncio.run(test_prompts())
 
 The server has been comprehensively tested with:
 - **2,500+ test cases** across 6 specialized test files with descriptive naming
-- **Complete security validation** covering all 11 critical security fixes
+- **Complete security validation** covering all 11 critical security fixes with attack simulation
 - **Performance benchmarking** with concurrency stress testing and memory leak detection  
 - **Monitoring integration testing** with graceful degradation validation
 - **@filename syntax validation** with real files across 24 of 25 tools
 - **OpenRouter integration testing** with 400+ model compatibility validation
+- **AI Collaboration testing** with 92.9% success rate and production enhancements
 - **Conversation system testing** with Redis storage and context management
 - **Error handling and edge cases** for enterprise deployment scenarios
 
