@@ -1,6 +1,6 @@
 # Gemini CLI MCP Server
 
-A production-ready Model Context Protocol (MCP) server that bridges Google's Gemini CLI with MCP-compatible clients like Claude Code and Claude Desktop. This enterprise-grade Gemini MCP server features OpenRouter AI API integration for access to 400+ AI models and provides 25 specialized tools for seamless multi-AI workflows between Claude, Gemini, and 400+ additional models.
+A production-ready Model Context Protocol (MCP) server that bridges Google's Gemini CLI with MCP-compatible clients like Claude Code and Claude Desktop. This enterprise-grade Gemini MCP server features OpenRouter AI API integration for access to 400+ AI models and provides 29 specialized tools for seamless multi-AI workflows between Claude, Gemini, and 400+ additional models.
 
 On Claude Desktop:
 
@@ -8,7 +8,7 @@ On Claude Desktop:
 
 ![Claude Desktop with Gemini CLI MCP Server With OpenRouter AI Collaboration](/screenshots/claude-code-gemini-mcp-openrouter-ai-collaboration-demo3-2.png)
 
-**Example 1:** Claude Code calling one of the 25 MCP tools, `gemini_prompt`:
+**Example 1:** Claude Code calling one of the 29 MCP tools, `gemini_prompt`:
 
 ```bash
 @gemini_prompt("Analyse @mcp_server.py codebase and modules explaining what this code does, think deeply before responding")
@@ -134,13 +134,13 @@ ntainability,best_practices,documentation",
 
 ## 🚀 Key Features
 
-- **25 Specialized MCP Tools** - Complete toolset for multi-AI integration across 5 tool categories
+- **29 Specialized MCP Tools** - Complete toolset for multi-AI integration across 6 tool categories
 - **400+ AI Models** - Access to OpenAI, Anthropic, Meta, Google, and 20+ providers via OpenRouter integration
-- **Enterprise Architecture** - Refactored modular design with 26+ modules organized across 6 architectural categories
+- **Enterprise Architecture** - Refactored modular design with 50+ modules organized across 7 architectural categories
 - **Conversation History** - Stateful multi-turn conversations with Redis-backed storage and cross-platform support
 - **Dynamic Token Limits** - Tool-specific limits from 100K-800K characters with model-aware scaling
 - **Multi-AI Workflows** - Purpose-built tools for plan evaluation, code review, and cross-platform collaboration
-- **@filename Support** - Direct file reading with intelligent large file handling strategies for 24 tools
+- **@filename Support** - Direct file reading with intelligent large file handling strategies for 28 tools
 - **Enterprise Security** - 11 critical security fixes with multi-layer defense and real-time protection
 - **Production Ready** - 2,500+ test cases, enterprise monitoring with OpenTelemetry + Prometheus
 - **High Concurrency** - Async architecture supporting 1,000-10,000+ concurrent requests with 10-100x improvement
@@ -149,6 +149,14 @@ ntainability,best_practices,documentation",
 
 - [Architecture Overview](#%EF%B8%8F-architecture-overview)
 - [Tool Suite](#%EF%B8%8F-tool-suite)
+  - [Core Gemini Tools](#core-gemini-tools-6)
+  - [System Tools](#system-tools-3)
+  - [Analysis Tools](#analysis-tools-5)
+  - [Conversation Tools](#conversation-tools-5)
+  - [Specialized Code Review Tools](#specialized-code-review-tools-3)
+  - [Content Comparison Tools](#content-comparison-tools-1)
+  - [AI Collaboration Tools](#ai-collaboration-tools-1)
+  - [OpenRouter Tools](#openrouter-tools-5)
 - [Installation](#-installation)
 - [MCP Client Configuration](#%EF%B8%8F-mcp-client-configuration)
 - [Usage Examples](#-usage-examples)
@@ -176,13 +184,15 @@ The Gemini CLI MCP Server features a modular, enterprise-grade architecture desi
 
 ### Core Components
 
-**🔧 Refactored Modular Architecture (26+ modules across 6 architectural categories)**:
+**🔧 Refactored Modular Architecture (50+ modules across 7 architectural categories)**:
 
-**Core Server Layer (4 modules):**
-- **`mcp_server.py`** - Streamlined main coordinator with tool registration pattern (326 lines)
-- **`mcp_core_tools.py`** - Pure MCP tool implementations for core Gemini CLI tools (487 lines)
-- **`mcp_collaboration_engine.py`** - AI collaboration system with advanced workflow modes (1,103 lines)
-- **`mcp_service_implementations.py`** - System and service tools for OpenRouter, analysis, conversation (1,228 lines)
+**Core Server Layer (6 modules):**
+- **`mcp_server.py`** - Streamlined main coordinator with tool registration pattern (337 lines)
+- **`mcp_core_tools.py`** - Pure MCP tool implementations for core Gemini CLI tools (488 lines)
+- **`mcp_collaboration_engine.py`** - AI collaboration system with advanced workflow modes (1,104 lines)
+- **`mcp_service_implementations.py`** - System and service tools for OpenRouter, analysis, conversation (1,229 lines)
+- **`mcp_code_review_tools.py`** - Specialized code review and analysis tools (NEW)
+- **`mcp_content_comparison_tools.py`** - Multi-source content comparison capabilities (NEW)
 
 **Configuration & Infrastructure (5 modules):**
 - **`gemini_config.py`** - Configuration constants and environment loading (1,829 lines)
@@ -195,9 +205,13 @@ The Gemini CLI MCP Server features a modular, enterprise-grade architecture desi
 - **`openrouter_client.py`** - OpenRouter API client for 400+ AI models (881 lines)
 - **`redis_cache.py`** - Redis caching with graceful memory fallback (914 lines)
 
-**Template System (12 modules):**
+**Template System (17 modules):**
 - **`prompts/`** - Template module with TTL caching and integrity verification
-- Includes: template_loader.py, base_template.py, eval_template.py, review_template.py, verify_template.py, summarize_template.py, debate_template.py, sequential_template.py, validation_template.py, plus interface files
+- Core templates: template_loader.py, base_template.py, eval_template.py, review_template.py, verify_template.py, summarize_template.py
+- Collaboration templates: debate_template.py, sequential_template.py, validation_template.py
+- Code review templates: code_review_template.py, extract_structured_template.py, git_diff_review_template.py (NEW)
+- Content analysis templates: content_comparison_template.py (NEW)
+- Plus interface and supporting files
 
 **Security Framework (5 modules):**
 - **`security/`** - Enterprise security framework with 11 critical security fixes
@@ -261,7 +275,7 @@ prompts/
 
 ## 🛠️ Tool Suite
 
-The server provides 25 specialized MCP tools organized into five categories:
+The server provides 29 specialized MCP tools organized into six categories:
 
 ### Core Gemini Tools (6)
 
@@ -437,6 +451,77 @@ gemini_clear_conversation(conversation_id="conv_12345")
 Get conversation system statistics and health.
 ```python
 gemini_conversation_stats()
+```
+
+### Specialized Code Review Tools (3)
+
+#### `gemini_code_review`
+Comprehensive code analysis with structured output (NEW).
+```python
+gemini_code_review(
+    code="Your code to review",
+    language="python",  # optional, auto-detected
+    focus_areas="security,performance,quality,best_practices",  # optional
+    severity_threshold="info",  # optional: info, warning, error, critical
+    output_format="structured"  # optional: structured, markdown, json
+)
+```
+
+#### `gemini_extract_structured`
+Extract structured data using JSON schemas (NEW).
+```python
+# Define a schema for code analysis
+schema = {
+    "type": "object",
+    "properties": {
+        "functions": {"type": "array"},
+        "classes": {"type": "array"},
+        "issues": {"type": "array"}
+    }
+}
+
+gemini_extract_structured(
+    content="Code or text to analyze",
+    schema=json.dumps(schema),
+    examples="Optional examples of expected output",  # optional
+    strict_mode=True,  # optional
+    model="gemini-2.5-flash"  # optional
+)
+```
+
+#### `gemini_git_diff_review`
+Analyze git diffs with contextual feedback (NEW).
+```python
+gemini_git_diff_review(
+    diff="Git diff content or patch",
+    context_lines=3,  # optional
+    review_type="comprehensive",  # optional: comprehensive, security_only, performance_only, quick
+    base_branch="main",  # optional
+    commit_message="Fix authentication bug"  # optional
+)
+```
+
+### Content Comparison Tools (1)
+
+#### `gemini_content_comparison`
+Advanced multi-source content comparison and analysis (NEW).
+```python
+# Compare documentation versions
+gemini_content_comparison(
+    sources='["@README.md", "@docs/README.md", "https://github.com/user/repo/README.md"]',
+    comparison_type="semantic",  # semantic, textual, structural, factual, code
+    output_format="structured",  # structured, matrix, summary, detailed, json
+    include_metrics=True,        # optional, include similarity scores
+    focus_areas="completeness,accuracy,structure"  # optional, what to focus on
+)
+
+# Code version analysis
+gemini_content_comparison(
+    sources='["@src/auth_v1.py", "@src/auth_v2.py"]',
+    comparison_type="code", 
+    output_format="detailed",
+    focus_areas="differences,security,performance"
+)
 ```
 
 ### AI Collaboration Tools (1)
@@ -936,6 +1021,69 @@ gemini_review_code(
 )
 ```
 
+### Specialized Code Review Examples (NEW)
+
+**Structured Code Analysis**:
+```python
+# Comprehensive code review with structured output
+gemini_code_review(
+    code="@src/api/handlers/",
+    language="python",
+    focus_areas="security,performance,maintainability",
+    severity_threshold="warning",
+    output_format="structured"
+)
+```
+
+**Schema-Based Data Extraction**:
+```python
+# Extract API endpoints from codebase
+schema = {
+    "type": "object",
+    "properties": {
+        "endpoints": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "path": {"type": "string"},
+                    "method": {"type": "string"},
+                    "authentication": {"type": "boolean"}
+                }
+            }
+        }
+    }
+}
+
+gemini_extract_structured(
+    content="@src/routes/",
+    schema=json.dumps(schema),
+    strict_mode=True
+)
+```
+
+**Git Diff Analysis**:
+```python
+# Review pull request changes
+gemini_git_diff_review(
+    diff="@pull_request.diff",
+    review_type="comprehensive",
+    base_branch="main",
+    commit_message="Add user authentication feature"
+)
+```
+
+**Multi-Source Content Comparison**:
+```python
+# Compare API documentation versions
+gemini_content_comparison(
+    sources='["@docs/api_v1.md", "@docs/api_v2.md", "https://api.example.com/docs"]',
+    comparison_type="semantic",
+    output_format="matrix",
+    focus_areas="breaking_changes,new_features,deprecations"
+)
+```
+
 ## ⚡ Advanced Features
 
 ### Dynamic Token Limits
@@ -953,6 +1101,10 @@ Each tool has optimized character limits based on typical use cases:
 | `gemini_summarize_files` | 800K chars | File-based analysis with @filename syntax |
 | `gemini_ai_collaboration` | 500K chars | Multi-AI workflow collaboration |
 | `gemini_openrouter_opinion` | 150K chars | OpenRouter model interactions |
+| `gemini_code_review` | 300K chars | Structured code analysis (NEW) |
+| `gemini_extract_structured` | 200K chars | Schema-based data extraction (NEW) |
+| `gemini_git_diff_review` | 150K chars | Git diff analysis (NEW) |
+| `gemini_content_comparison` | 400K chars | Multi-source content comparison (NEW) |
 | **Conversation Tools** | Variable | Context-aware with token management |
 
 ### Model-Aware Scaling
@@ -1018,7 +1170,7 @@ Stateful multi-turn conversations with persistent context:
 
 ### @filename Syntax Support
 
-24 of the 25 tools support Gemini CLI's native @filename syntax for optimal token efficiency. OpenRouter tools include enhanced large file handling:
+28 of the 29 tools support Gemini CLI's native @filename syntax for optimal token efficiency. OpenRouter tools include enhanced large file handling:
 
 ```python
 # Single file
@@ -1263,7 +1415,7 @@ Response from Gemini AI
 - O(1) rate limiting algorithms with memory leak protection
 - Redis-backed conversation storage scales independently
 
-**Total Lines of Code**: ~15,000+ lines across 26+ modules
+**Total Lines of Code**: ~15,000+ lines across 50+ modules
 
 **Cache Effectiveness**:
 - Help/version commands: 95-99% hit rate
@@ -1303,7 +1455,7 @@ gemini_metrics()
 ```
 
 **Key Metrics**:
-- Commands executed and success rate across all 25 tools
+- Commands executed and success rate across all 29 tools
 - Average latency and throughput per tool category
 - Cache hit rates and effectiveness (4 cache types)
 - Error rates and types with detailed classification
@@ -1397,10 +1549,11 @@ The server has been comprehensively tested with:
 - **Complete security validation** covering all 11 critical security fixes with attack simulation
 - **Performance benchmarking** with concurrency stress testing and memory leak detection  
 - **Monitoring integration testing** with graceful degradation validation
-- **@filename syntax validation** with real files across 24 of 25 tools
+- **@filename syntax validation** with real files across 28 of 29 tools
 - **OpenRouter integration testing** with 400+ model compatibility validation
 - **AI Collaboration testing** with 92.9% success rate and production enhancements
 - **Conversation system testing** with Redis storage and context management
+- **Specialized code review testing** for new analysis tools
 - **Error handling and edge cases** for enterprise deployment scenarios
 
 ## 🔧 Troubleshooting
