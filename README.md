@@ -1680,3 +1680,7 @@ uvicorn[standard]>=0.20.0  # For alternative server deployment
 
 - **Gemini CLI**: Google's command-line interface for Gemini AI
 - **Node.js**: Required for Gemini CLI installation (if using npm)
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=centminmod/gemini-cli-mcp-server&type=Date)](https://www.star-history.com/#centminmod/gemini-cli-mcp-server&Date)
