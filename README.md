@@ -177,7 +177,7 @@ The Gemini CLI MCP Server features a modular, enterprise-grade architecture desi
 └─────────────────┘    └──────────────────┘    └─────────────────┘
          ↑                       ↑                       ↑
     ┌─────────┐            ┌─────────────┐         ┌─────────────┐
-    │ 25 MCP  │            │ FastMCP     │         │ Google      │
+    │ 29 MCP  │            │ FastMCP     │         │ Google      │
     │ Tools   │            │ Server      │         │ Gemini AI   │
     └─────────┘            └─────────────┘         └─────────────┘
 ```
