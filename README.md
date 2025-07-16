@@ -136,12 +136,12 @@ ntainability,best_practices,documentation",
 
 - **29 Specialized MCP Tools** - Complete toolset for multi-AI integration across 6 tool categories
 - **400+ AI Models** - Access to OpenAI, Anthropic, Meta, Google, and 20+ providers via OpenRouter integration
-- **Enterprise Architecture** - Refactored modular design with 50+ modules organized across 7 architectural categories
+- **Enterprise Architecture** - Refactored modular design with 36 modules organized across 4 directories
 - **Conversation History** - Stateful multi-turn conversations with Redis-backed storage and cross-platform support
 - **Dynamic Token Limits** - Tool-specific limits from 100K-800K characters with model-aware scaling
 - **Multi-AI Workflows** - Purpose-built tools for plan evaluation, code review, and cross-platform collaboration
 - **@filename Support** - Direct file reading with intelligent large file handling strategies for 28 tools
-- **Enterprise Security** - 11 critical security fixes with multi-layer defense and real-time protection
+- **Enterprise Security** - 22 critical security fixes with multi-layer defense and real-time protection
 - **Production Ready** - 2,500+ test cases, enterprise monitoring with OpenTelemetry + Prometheus
 - **High Concurrency** - Async architecture supporting 1,000-10,000+ concurrent requests with 10-100x improvement
 
@@ -184,26 +184,28 @@ The Gemini CLI MCP Server features a modular, enterprise-grade architecture desi
 
 ### Core Components
 
-**🔧 Refactored Modular Architecture (50+ modules across 7 architectural categories)**:
+**🔧 Refactored Modular Architecture (36+ modules across 4 directories)**:
 
-**Core Server Layer (6 modules):**
-- **`mcp_server.py`** - Streamlined main coordinator with tool registration pattern (337 lines)
-- **`mcp_core_tools.py`** - Pure MCP tool implementations for core Gemini CLI tools (488 lines)
-- **`mcp_collaboration_engine.py`** - AI collaboration system with advanced workflow modes (1,104 lines)
-- **`mcp_service_implementations.py`** - System and service tools for OpenRouter, analysis, conversation (1,229 lines)
-- **`mcp_code_review_tools.py`** - Specialized code review and analysis tools (NEW)
-- **`mcp_content_comparison_tools.py`** - Multi-source content comparison capabilities (NEW)
+**Core Server Layer (5 modules):**
+- **`mcp_server.py`** - Streamlined main coordinator with tool registration pattern (597 lines)
+- **`modules/core/mcp_core_tools.py`** - Pure MCP tool implementations for core Gemini CLI tools (487 lines)
+- **`modules/core/mcp_collaboration_engine.py`** - AI collaboration system with advanced workflow modes (1,103 lines)
+- **`modules/core/mcp_service_implementations.py`** - System and service tools coordination layer (1,228 lines)
+- **`modules/core/mcp_code_review_tools.py`** - Specialized code review and analysis tools (386 lines)
+- **`modules/core/mcp_content_comparison_tools.py`** - Multi-source content comparison capabilities (299 lines)
 
-**Configuration & Infrastructure (5 modules):**
-- **`gemini_config.py`** - Configuration constants and environment loading (1,829 lines)
-- **`gemini_utils.py`** - Helper functions, validation, error handling, and security (3,551 lines)
-- **`conversation_manager.py`** - Stateful conversation management with Redis support (1,048 lines)
-- **`monitoring.py`** - OpenTelemetry, Prometheus, and health check integration (1,534 lines)
-- **`constants.py`** - Centralized configuration constants and magic numbers (336 lines)
+**Configuration & Infrastructure (7 modules):**
+- **`modules/config/gemini_config.py`** - Main configuration interface with modular imports (1,835 lines)
+- **`modules/config/environment_config.py`** - Environment variable parsing and validation (NEW)
+- **`modules/config/model_config.py`** - Gemini model definitions and scaling configuration (NEW)
+- **`modules/config/feature_config.py`** - Feature flags, OpenRouter, monitoring, and conversations (NEW)
+- **`modules/utils/gemini_utils.py`** - Core utilities and helper functions (3,996 lines)
+- **`modules/services/conversation_manager.py`** - Stateful conversation management with Redis support (1,048 lines)
+- **`modules/services/monitoring.py`** - OpenTelemetry, Prometheus, and health check integration (1,534 lines)
 
 **Integration Modules (2 modules):**
-- **`openrouter_client.py`** - OpenRouter API client for 400+ AI models (881 lines)
-- **`redis_cache.py`** - Redis caching with graceful memory fallback (914 lines)
+- **`modules/services/openrouter_client.py`** - OpenRouter API client for 400+ AI models (881 lines)
+- **`modules/services/redis_cache.py`** - Redis caching with graceful memory fallback (914 lines)
 
 **Template System (17 modules):**
 - **`prompts/`** - Template module with TTL caching and integrity verification
@@ -213,9 +215,9 @@ The Gemini CLI MCP Server features a modular, enterprise-grade architecture desi
 - Content analysis templates: content_comparison_template.py (NEW)
 - Plus interface and supporting files
 
-**Security Framework (5 modules):**
-- **`security/`** - Enterprise security framework with 11 critical security fixes
-- Includes: api_key_manager.py, credential_sanitizer.py, pattern_detector.py, security_monitor.py, security_validator.py
+**Security Framework (6 modules):**
+- **`security/`** - Enterprise security framework with 22 critical security fixes
+- Includes: api_key_manager.py, credential_sanitizer.py, pattern_detector.py, security_monitor.py, security_validator.py, jsonrpc_validator.py
 
 **Rate Limiting & Utility Scripts (5 modules):**
 - **Rate Limiting Framework** (3 modules): per_model_rate_limiter.py, rate_limit_config.py, rate_limit_integration.py
@@ -251,10 +253,11 @@ prompts/
 - **90% Rate Limiting Optimization**: Deque-based O(1) algorithms with memory leak protection
 
 **🛡️ Security & Reliability**:
-- **11 Critical Security Fixes**: Session-based rate limiting, template integrity validation, enhanced credential sanitization
+- **22 Critical Security Fixes**: Session-based rate limiting, template integrity validation, enhanced credential sanitization, JSON-RPC validation, subprocess injection protection
 - **Multi-layer Defense**: 25+ attack categories with compiled regex patterns for real-time protection  
-- **Security Pattern Detection**: Protection against command injection, path traversal, XSS, prompt injection
+- **Security Pattern Detection**: Protection against command injection, path traversal, XSS, prompt injection, information disclosure
 - **Memory-Safe Operations**: Bounded caches with automatic cleanup and O(1) operations
+- **JSON-RPC Security Middleware**: Protocol-level validation with request size limits and nesting depth protection
 - **Structured Error Handling**: Comprehensive error taxonomy with sanitized client responses
 - **Enterprise Compliance**: OWASP Top 10 aligned with NIST security guidelines
 
@@ -1312,6 +1315,15 @@ export OPENTELEMETRY_ENDPOINT="https://otel-collector:4317"  # OpenTelemetry end
 export OPENTELEMETRY_SERVICE_NAME="gemini-cli-mcp-server"    # Service name for tracing
 ```
 
+#### Security Configuration (Advanced)
+```bash
+export JSONRPC_MAX_REQUEST_SIZE=1048576     # Max JSON-RPC request size (1MB default)
+export JSONRPC_MAX_NESTING_DEPTH=10        # Max object/array nesting depth
+export JSONRPC_STRICT_MODE=true            # Enable strict JSON-RPC validation
+export GEMINI_SUBPROCESS_MAX_CPU_TIME=300  # Subprocess CPU time limit (seconds)
+export GEMINI_SUBPROCESS_MAX_MEMORY_MB=512 # Subprocess memory limit (MB)
+```
+
 ### Configuration Examples
 
 **Standard Development**:
@@ -1415,7 +1427,7 @@ Response from Gemini AI
 - O(1) rate limiting algorithms with memory leak protection
 - Redis-backed conversation storage scales independently
 
-**Total Lines of Code**: ~15,000+ lines across 50+ modules
+**Total Lines of Code**: ~15,000+ lines across 36+ modules
 
 **Cache Effectiveness**:
 - Help/version commands: 95-99% hit rate
@@ -1546,7 +1558,7 @@ asyncio.run(test_prompts())
 
 The server has been comprehensively tested with:
 - **2,500+ test cases** across 6 specialized test files with descriptive naming
-- **Complete security validation** covering all 11 critical security fixes with attack simulation
+- **Complete security validation** covering all 22 critical security fixes with attack simulation
 - **Performance benchmarking** with concurrency stress testing and memory leak detection  
 - **Monitoring integration testing** with graceful degradation validation
 - **@filename syntax validation** with real files across 28 of 29 tools
