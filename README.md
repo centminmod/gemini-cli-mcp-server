@@ -136,7 +136,7 @@ ntainability,best_practices,documentation",
 
 - **29 Specialized MCP Tools** - Complete toolset for multi-AI integration across 6 tool categories
 - **400+ AI Models** - Access to OpenAI, Anthropic, Meta, Google, and 20+ providers via OpenRouter integration
-- **Enterprise Architecture** - Refactored modular design with 36 modules organized across 4 directories
+- **Enterprise Architecture** - Refactored modular design with 58+ Python files organized across multiple specialized modules
 - **Conversation History** - Stateful multi-turn conversations with Redis-backed storage and cross-platform support
 - **Dynamic Token Limits** - Tool-specific limits from 100K-800K characters with model-aware scaling
 - **Multi-AI Workflows** - Purpose-built tools for plan evaluation, code review, and cross-platform collaboration
@@ -156,7 +156,7 @@ ntainability,best_practices,documentation",
   - [Specialized Code Review Tools](#specialized-code-review-tools-3)
   - [Content Comparison Tools](#content-comparison-tools-1)
   - [AI Collaboration Tools](#ai-collaboration-tools-1)
-  - [OpenRouter Tools](#openrouter-tools-5)
+  - [OpenRouter Tools](#openrouter-tools-6)
 - [Installation](#-installation)
 - [MCP Client Configuration](#%EF%B8%8F-mcp-client-configuration)
 - [Usage Examples](#-usage-examples)
@@ -184,10 +184,10 @@ The Gemini CLI MCP Server features a modular, enterprise-grade architecture desi
 
 ### Core Components
 
-**🔧 Refactored Modular Architecture (36+ modules across 4 directories)**:
+**🔧 Refactored Modular Architecture (58+ Python files across multiple specialized modules)**:
 
 **Core Server Layer (5 modules):**
-- **`mcp_server.py`** - Streamlined main coordinator with tool registration pattern (597 lines)
+- **`mcp_server.py`** - Streamlined main coordinator with tool registration pattern (734 lines)
 - **`modules/core/mcp_core_tools.py`** - Pure MCP tool implementations for core Gemini CLI tools (487 lines)
 - **`modules/core/mcp_collaboration_engine.py`** - AI collaboration system with advanced workflow modes (1,103 lines)
 - **`modules/core/mcp_service_implementations.py`** - System and service tools coordination layer (1,228 lines)
@@ -678,7 +678,7 @@ When `models` parameter is not provided, the function automatically selects appr
 - **Debate**: `"gemini-2.5-flash,openai/gpt-4.1-mini,anthropic/claude-3-haiku"`  
 - **Validation**: `"gemini-2.5-flash,openai/gpt-4.1-nano,anthropic/claude-3-haiku"`
 
-### OpenRouter Tools (5)
+### OpenRouter Tools (6)
 
 #### `gemini_test_openrouter`
 Test OpenRouter connectivity and client functionality.
@@ -722,6 +722,15 @@ gemini_cross_model_comparison(
 Get OpenRouter usage statistics and costs for the current session.
 ```python
 gemini_openrouter_usage_stats()
+```
+
+#### `gemini_cross_model_comparison`
+Compare responses across Gemini CLI and OpenRouter models with @filename support.
+```python
+gemini_cross_model_comparison(
+    prompt="Design a REST API for user authentication",
+    models="gemini-2.5-flash,openai/gpt-4.1-mini,anthropic/claude-3-haiku"
+)
 ```
 
 ## 📦 Installation
