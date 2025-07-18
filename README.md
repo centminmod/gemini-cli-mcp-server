@@ -141,6 +141,8 @@ Click `View Screenshots` to see example.
 <details>
 <summary>View Screenshots: Extended Analysis with Claude Response</summary>
 
+Seems there is a bug in that it says it gets `4o-mini` but I wanted/d`o get 4.1-nano` model as asked.
+
 ![Claude Code using Gemini CLI MCP server's OpenRouter AI integration](/screenshots/claude-code-gemini-cli-mcp-server-natural-language-call-openai-gpt-4.1-nano-opinion-1.png)
 
 ![Claude Code using Gemini CLI MCP server's OpenRouter AI integration](/screenshots/claude-code-gemini-cli-mcp-server-natural-language-call-openai-gpt-4.1-nano-opinion-2.png)
