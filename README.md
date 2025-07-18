@@ -132,9 +132,9 @@ ntainability,best_practices,documentation",
 
 ![Claude Code with Gemini CLI MCP Server With OpenRouter AI Collaboration](/screenshots/claude-code-gemini-mcp-openrouter-ai-collaboration-demo2-3.png)
 
-**Example 7:** Claude Code natural langurage prompt calling Gemini CLI MCP server's Openrouter LLM model, OpenAI GPT 4.1-nano.
+**Example 7:** Claude Code natural language prompt calling Gemini CLI MCP server's Openrouter LLM model, OpenAI GPT 4.1-nano.
 
-Claude Code natural langurage prompt calling Gemini CLI MCP server's Openrouter LLM model, OpenAI GPT 4.1-nano.
+Claude Code natural language prompt calling Gemini CLI MCP server's Openrouter LLM model, OpenAI GPT 4.1-nano.
 
 Click `View Screenshots` to see example.
 
