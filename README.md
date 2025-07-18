@@ -151,7 +151,7 @@ OpenRouter Usage Activity for OpenAI GPT 4.1-nano
 
 ![Claude Code using Gemini CLI MCP server's OpenRouter AI integration](/screenshots/claude-code-gemini-cli-mcp-server-natural-language-call-openai-gpt-4.1-nano-opinion-3.png)
 
-Gemini CLI MCP server uses Cloudflare AI Gateway proxies for Gemini CLI itself and also for OpenRouter integration
+Gemini CLI MCP server uses Cloudflare AI Gateway proxies for Gemini CLI itself and also for OpenRouter integration. But AI Gateway records it as 4.1-mini and not 4.1-nano.
 
 ![Claude Code using Gemini CLI MCP server's OpenRouter AI integration](/screenshots/claude-code-gemini-cli-mcp-server-natural-language-call-openai-gpt-4.1-nano-opinion-4.png)
 
