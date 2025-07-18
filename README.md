@@ -132,7 +132,30 @@ ntainability,best_practices,documentation",
 
 ![Claude Code with Gemini CLI MCP Server With OpenRouter AI Collaboration](/screenshots/claude-code-gemini-mcp-openrouter-ai-collaboration-demo2-3.png)
 
+**Example 7:** Claude Code natural langurage prompt calling Gemini CLI MCP server's Openrouter LLM model, OpenAI GPT 4.1-nano.
 
+Claude Code natural langurage prompt calling Gemini CLI MCP server's Openrouter LLM model, OpenAI GPT 4.1-nano.
+
+Click `View Screenshots` to see example.
+
+<details>
+<summary>View Screenshots: Extended Analysis with Claude Response</summary>
+
+![Claude Code using Gemini CLI MCP server's OpenRouter AI integration](/screenshots/claude-code-gemini-cli-mcp-server-natural-language-call-openai-gpt-4.1-nano-opinion-1.png)
+
+![Claude Code using Gemini CLI MCP server's OpenRouter AI integration](/screenshots/claude-code-gemini-cli-mcp-server-natural-language-call-openai-gpt-4.1-nano-opinion-2.png)
+
+OpenRouter Usage Activity for OpenAI GPT 4.1-nano
+
+![Claude Code using Gemini CLI MCP server's OpenRouter AI integration](/screenshots/claude-code-gemini-cli-mcp-server-natural-language-call-openai-gpt-4.1-nano-opinion-3.png)
+
+Gemini CLI MCP server uses Cloudflare AI Gateway proxies for Gemini CLI itself and also for OpenRouter integration
+
+![Claude Code using Gemini CLI MCP server's OpenRouter AI integration](/screenshots/claude-code-gemini-cli-mcp-server-natural-language-call-openai-gpt-4.1-nano-opinion-4.png)
+
+![Claude Code using Gemini CLI MCP server's OpenRouter AI integration](/screenshots/claude-code-gemini-cli-mcp-server-natural-language-call-openai-gpt-4.1-nano-opinion-5.png)
+
+</details>
 
 ## 🚀 Key Features
 
