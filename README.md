@@ -1,3 +1,5 @@
+[![GitHub stars](https://img.shields.io/github/stars/centminmod/gemini-cli-mcp-server.svg?style=flat-square)](https://github.com/centminmod/gemini-cli-mcp-server/stargazers) [![GitHub forks](https://img.shields.io/github/forks/centminmod/gemini-cli-mcp-server.svg?style=flat-square)](https://github.com/centminmod/gemini-cli-mcp-server/network) [![GitHub issues](https://img.shields.io/github/issues/centminmod/gemini-cli-mcp-server.svg?style=flat-square)](https://github.com/centminmod/gemini-cli-mcp-server/issues)
+
 # Gemini CLI MCP Server
 
 A production-ready Model Context Protocol (MCP) server that bridges Google's Gemini CLI with MCP-compatible clients like Claude Code and Claude Desktop. This enterprise-grade Gemini MCP server features OpenRouter AI API integration for access to 400+ AI models and provides 29 specialized tools for seamless multi-AI workflows between Claude, Gemini, and 400+ additional models.
